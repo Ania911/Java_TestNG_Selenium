@@ -1,4 +1,4 @@
-package TestLogin;
+package Tests;
 
 import Base.Base;
 import org.testng.annotations.Test;
