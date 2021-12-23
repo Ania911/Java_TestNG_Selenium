@@ -1,28 +1,30 @@
-package PageFactory;
+package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import verification.Verification;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CommentPage {
+  Verification verificationCheck = new Verification();
 
     private WebDriver driver;
     @FindBy(xpath = "//div[@class = 'comment-list-item__replies']")
-    WebElement viewAllDropDawn;
+    public WebElement viewAllDropDawn;
 
     @FindBy(xpath = "//div[@class = 'comment-list-item__text']")
-    WebElement commentsList;
+    public WebElement commentsList;
 
     @FindBy(xpath = "//span[@class = 'arrow-down']")
-    WebElement arrowDown;
+    public WebElement arrowDown;
 
     @FindBy(xpath = "//span[@class = 'arrow-down arrow-down-reverse']")
-    WebElement arrowDownReverse;
+    public WebElement arrowDownReverse;
 
 
     public CommentPage(WebDriver driver) {
@@ -30,18 +32,23 @@ public class CommentPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void getPageUrl() {
+    public void verifyCommentPageUrl() {
         String commentUrl = driver.getCurrentUrl();
-        Assert.assertNotEquals(commentUrl, "https://9gag.com/");
+        verificationCheck.verifyCommentUrl(commentUrl, "https://9gag.com/");
     }
 
     public String getCommentText() {
-        return commentsList.getText();
+        return verificationCheck.getText(commentsList);
     }
 
-    public void viewAllReplies() {
+    public  void verifyComment(){
+        String title = getCommentText();
+        assertEquals(title, getCommentText());
+    }
+
+    public void verifyAllReplies() {
         arrowDown.click();
-        assertTrue(arrowDownReverse.isDisplayed());
+        verificationCheck.verifyElementIsPresent(arrowDownReverse);
     }
 
 

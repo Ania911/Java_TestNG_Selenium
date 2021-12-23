@@ -9,17 +9,21 @@ public class testNavigation extends Base {
     @Test
     public void testUrlLinkHot() {
         homePage.clickOnHotButton();
+        homePage.verifyHotUrl();
+        homePage.verifyHotButtons();
     }
 
     @Test
     public void testUrlLinkTrending() {
         homePage.clickOnTrendingButton();
+        homePage.verifyTrendingUrl();
     }
 
     @Test
     public void testOpenCommentNewPage() {
         homePage.clickOnCommentButton();
-        commentPage.getPageUrl();
+        homePage.switchToCommentPage();
+        commentPage.verifyCommentPageUrl();
     }
 
     @Test

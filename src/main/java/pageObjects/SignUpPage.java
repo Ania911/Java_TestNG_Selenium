@@ -1,4 +1,4 @@
-package PageFactory;
+package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,31 +6,33 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class SignUpPage {
+
     private WebDriver driver;
 
+
     @FindBy(xpath = "//a[@href='/login']")
-    WebElement loginButton;
+    public WebElement loginButton;
 
     @FindBy(xpath = "//input[@name='username']")
-    WebElement userName;
+    public WebElement userName;
 
     @FindBy(xpath = "//input[@name='password']")
-    WebElement userPass;
+    public WebElement userPass;
 
     @FindBy(xpath = "//input[@type='submit']")
-    WebElement submitButton;
+    public WebElement submitButton;
 
     @FindBy(xpath = "//a[@href='/submit']")
-    WebElement uploadButton;
+    public WebElement uploadButton;
 
     @FindBy(xpath = "//img[@alt='Avatar']")
-    WebElement avatarIcon;
+    public WebElement avatarIcon;
 
     @FindBy(xpath = "//a[@href='/logout']")
-    WebElement logoutButton;
+    public WebElement logoutButton;
 
     @FindBy(xpath = "//p[@class='error-message red']")
-    WebElement loginError;
+    public WebElement loginError;
 
 
     public SignUpPage(WebDriver driver) {
@@ -38,15 +40,23 @@ public class SignUpPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void loginToApp(String name, String pass) {
+    public void clickLoginButton() {
         loginButton.click();
-        userName.sendKeys(name);
-        userPass.sendKeys(pass);
-        submitButton.click();
-        uploadButton.isDisplayed();
     }
 
-    public void failLoginToApp(String name, String pass) {
+    public void enterUserName(String name) {
+        userName.sendKeys(name);
+    }
+
+    public void enterPass(String pass) {
+        userPass.sendKeys(pass);
+    }
+
+    public void clickSubmitButton() {
+        submitButton.click();
+    }
+
+    public void loginToApp(String name, String pass) {
         loginButton.click();
         userName.sendKeys(name);
         userPass.sendKeys(pass);
@@ -56,10 +66,6 @@ public class SignUpPage {
     public void logOut() {
         avatarIcon.click();
         logoutButton.click();
-    }
-
-    public String loginError() {
-        return loginError.getText();
     }
 
 

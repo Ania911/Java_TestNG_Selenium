@@ -1,9 +1,10 @@
-package PageFactory;
+package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import verification.Verification;
 
 import java.util.ArrayList;
 
@@ -12,27 +13,28 @@ import static org.testng.Assert.assertEquals;
 public class HomePage {
     private WebDriver driver;
     private WebDriver.Navigation navigate;
+    Verification verificationCheck = new Verification();
 
     @FindBy(xpath = "//a[@href='/hot']")
-    WebElement hotButton;
+    public WebElement hotButton;
 
     @FindBy(xpath = "//a[@href='/trending']")
-    WebElement trendingButton;
+    public WebElement trendingButton;
 
     @FindBy(xpath = "//a[@href = '/tag/spider-man?ref=featured-tag']")
-    WebElement spiderManButton;
+    public WebElement spiderManButton;
 
     @FindBy(xpath = "//a[@href = '/tag/top-gifs-2021?ref=featured-tag']")
-    WebElement topButton;
+    public WebElement topButton;
 
     @FindBy(xpath = "//a[@href = '/tag/omicron?ref=featured-tag']")
-    WebElement omicronButton;
+    public WebElement omicronButton;
 
     @FindBy(xpath = "//a[@data-position = '1']")
-    WebElement commentButton;
+    public WebElement commentButton;
 
     @FindBy(xpath = "//h2[contains(text(),'Funny')]")
-    WebElement funnyText;
+    public WebElement funnyText;
 
 
     public HomePage(WebDriver driver) {
@@ -42,21 +44,33 @@ public class HomePage {
 
     public void clickOnHotButton() {
         hotButton.click();
-        String strUrl = driver.getCurrentUrl();
-        assertEquals(strUrl, "https://9gag.com/hot");
-        spiderManButton.isDisplayed();
-        topButton.isDisplayed();
-        omicronButton.isDisplayed();
     }
 
     public void clickOnTrendingButton() {
         trendingButton.click();
-        String strUrl = driver.getCurrentUrl();
-        assertEquals(strUrl, "https://9gag.com/trending");
     }
 
     public void clickOnCommentButton() {
         commentButton.click();
+    }
+
+    public void verifyHotUrl() {
+        String strUrl = driver.getCurrentUrl();
+        verificationCheck.verifyUrlText(strUrl, "https://9gag.com/hot");
+    }
+
+    public void verifyTrendingUrl() {
+        String strUrl = driver.getCurrentUrl();
+        verificationCheck.verifyUrlText(strUrl, "https://9gag.com/trending");
+    }
+
+    public void verifyHotButtons() {
+        verificationCheck.verifyElementIsPresent(spiderManButton);
+        verificationCheck.verifyElementIsPresent(topButton);
+        verificationCheck.verifyElementIsPresent(omicronButton);
+    }
+
+    public void switchToCommentPage() {
         ArrayList<String> tab = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tab.get(1));
     }
@@ -81,10 +95,10 @@ public class HomePage {
         hotButton.click();
         driver.navigate().back();
         String strUrl = driver.getCurrentUrl();
-        assertEquals(strUrl, "https://9gag.com/");
+        verificationCheck.verifyUrlText(strUrl, "https://9gag.com/");
         driver.navigate().forward();
         String strUrl2 = driver.getCurrentUrl();
-        assertEquals(strUrl2, "https://9gag.com/hot");
+        verificationCheck.verifyUrlText(strUrl2, "https://9gag.com/hot");
     }
 
     public void navigateToFunnyUrl() {
