@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import verification.Methods;
 import verification.Verification;
 
 import static org.testng.Assert.assertEquals;
@@ -12,6 +13,7 @@ import static org.testng.Assert.assertTrue;
 
 public class CommentPage {
   Verification verificationCheck = new Verification();
+    Methods function = new Methods();
 
     private WebDriver driver;
     @FindBy(xpath = "//div[@class = 'comment-list-item__replies']")
@@ -38,7 +40,7 @@ public class CommentPage {
     }
 
     public String getCommentText() {
-        return verificationCheck.getText(commentsList);
+       return function.getText(commentsList);
     }
 
     public  void verifyComment(){

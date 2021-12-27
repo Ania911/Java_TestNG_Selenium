@@ -40,22 +40,6 @@ public class SignUpPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickLoginButton() {
-        loginButton.click();
-    }
-
-    public void enterUserName(String name) {
-        userName.sendKeys(name);
-    }
-
-    public void enterPass(String pass) {
-        userPass.sendKeys(pass);
-    }
-
-    public void clickSubmitButton() {
-        submitButton.click();
-    }
-
     public void loginToApp(String name, String pass) {
         loginButton.click();
         userName.sendKeys(name);

@@ -2,26 +2,31 @@ package Tests;
 
 import Base.Base;
 import org.testng.annotations.Test;
+import verification.Methods;
+import verification.Verification;
 
 
 public class testNavigation extends Base {
+    Verification verification = new Verification();
+    Methods function = new Methods();
 
     @Test
     public void testUrlLinkHot() {
-        homePage.clickOnHotButton();
+        function.clickOnTheButton(homePage.hotButton);
         homePage.verifyHotUrl();
-        homePage.verifyHotButtons();
+        verification.verifyElementIsPresent(homePage.spiderManButton);
+        verification.verifyElementIsPresent(homePage.omicronButton);
     }
 
     @Test
     public void testUrlLinkTrending() {
-        homePage.clickOnTrendingButton();
+        function.clickOnTheButton(homePage.trendingButton);
         homePage.verifyTrendingUrl();
     }
 
     @Test
     public void testOpenCommentNewPage() {
-        homePage.clickOnCommentButton();
+        function.clickOnTheButton(homePage.commentButton);
         homePage.switchToCommentPage();
         commentPage.verifyCommentPageUrl();
     }

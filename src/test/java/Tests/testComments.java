@@ -2,21 +2,24 @@ package Tests;
 
 import Base.Base;
 import org.testng.annotations.Test;
+import verification.Methods;
 import verification.Verification;
 
 public class testComments extends Base {
 
-    Verification verification = new Verification();
+    Methods function = new Methods();
 
     @Test
     public void testCommentText() {
-        homePage.clickOnCommentButton();
+        function.clickOnTheButton(homePage.commentButton);
+        homePage.switchToCommentPage();
         commentPage.verifyComment();
     }
 
     @Test
     public void testViewHideAllReplies() {
-        homePage.clickOnCommentButton();
+        function.clickOnTheButton(homePage.commentButton);
+        homePage.switchToCommentPage();
         commentPage.verifyAllReplies();
     }
 
