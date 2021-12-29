@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class Methods {
     private WebDriver driver;
@@ -20,7 +22,7 @@ public class Methods {
         element.click();
     }
 
-    public boolean isElementPresent(WebElement element) {
+    public boolean elementIsDisplayed(WebElement element) {
         try {
             element.isDisplayed();
             return true;
@@ -30,12 +32,21 @@ public class Methods {
     }
 
     public Boolean elementIsSelected(WebElement element) {
-       element.isSelected();
-       return true;
+        try {
+            element.isSelected();
+            return true;
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 
-    public void elementIsEnabled(WebElement element) {
-        element.isEnabled();
+    public Boolean elementIsEnabled(WebElement element) {
+        try {
+            element.isEnabled();
+            return true;
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        }
     }
 
     public String getText(WebElement element) throws NoSuchElementException  {
@@ -78,17 +89,6 @@ public class Methods {
         selectElement.selectByVisibleText(text);
     }
 
-//    public List<WebElement> getFirstElementOnTheList(List<WebElement> element) {
-//        WebElement ul = element.get(0);
-//        System.out.println(ul);
-//            return ul;
-//    }
 
-//    public String getFirstShoppingItem() {
-//        List<WebElement> elements = driver.findElements(userName);
-//        WebElement firstElement = Iterables.getFirst(elements, driver.findElement(userName));
-//        System.out.println(firstElement.getText());
-//        return firstElement.getText();
-//    }
 
 }

@@ -24,8 +24,15 @@ public class SubMenuPage {
     @FindBy(xpath = "//*[contains(text(),'Most Recent')]")
     public WebElement mostRecent;
 
+    @FindBy(xpath = "//*[@id=\"container\"]/div[1]/div/section[1]/ul/li[1]/div/ul/li[1]")
+    public WebElement selectedOption;
+
     @FindBy(xpath = "//a[@href='/hot' and @class='label']")
     public WebElement hotLabel;
+
+    @FindBy(xpath = "//div[@class='menu']")
+    public WebElement menu;
+
 
     public SubMenuPage(WebDriver driver) {
         this.driver = driver;

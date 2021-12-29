@@ -43,6 +43,9 @@ public class HomePage {
     @FindBy(xpath = "//h2[contains(text(),'Funny')]")
     public WebElement funnyText;
 
+    @FindBy(xpath = "//h3[contains(text(),'Favorites')]")
+    public WebElement favoriteText;
+
     @FindBy(xpath = "//a[@href = 'https://bit.ly/ShuffleNav']")
     public WebElement shuffleNavButton;
 
@@ -51,6 +54,21 @@ public class HomePage {
 
     @FindBy(xpath = "//a[@href = 'javascript:void(0);']")
     public WebElement menuButton;
+
+    @FindBy(xpath = "//i[@class='icon star']")
+    public WebElement starIcon;
+
+    @FindBy(xpath = "//a[@class='button favorite']")
+    public WebElement favoriteButton;
+
+    @FindBy(xpath = "//a[@href='/funny']")
+    public WebElement funnyButton;
+
+    @FindBy(xpath = "//h3[contains(text(),'Recents')]")
+    public WebElement recentText;
+
+    @FindBy(xpath = "//a[@class='button-clear']")
+    public WebElement buttonClear;
 
 
     public HomePage(WebDriver driver) {
