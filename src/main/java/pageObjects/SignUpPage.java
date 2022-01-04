@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SignUpPage {
 
-    private WebDriver driver;
+    protected WebDriver driver;
 
 
     @FindBy(xpath = "//a[@href='/login']")

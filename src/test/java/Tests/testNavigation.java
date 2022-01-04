@@ -2,42 +2,48 @@ package Tests;
 
 import Base.Base;
 import org.testng.annotations.Test;
-import verification.Methods;
-import verification.Verification;
+import pageObjects.CommentPage;
+import pageObjects.HomePage;
+import utility.Methods;
+import utility.Verification;
 
 
 public class testNavigation extends Base {
-    Verification verification = new Verification();
-    Methods function = new Methods();
 
     @Test
     public void testUrlLinkHot() {
-        function.clickOnTheButton(homePage.hotButton);
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.hotButton);
         homePage.verifyHotUrl();
-        verification.verifyElementIsPresent(homePage.spiderManButton);
-        verification.verifyElementIsPresent(homePage.omicronButton);
+        Verification.verifyElementIsPresent(homePage.spiderManButton);
+        Verification.verifyElementIsPresent(homePage.omicronButton);
     }
 
     @Test
     public void testUrlLinkTrending() {
-        function.clickOnTheButton(homePage.trendingButton);
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.trendingButton);
         homePage.verifyTrendingUrl();
     }
 
     @Test
     public void testOpenCommentNewPage() {
-        function.clickOnTheButton(homePage.commentButton);
+        HomePage homePage = new HomePage(driver);
+        CommentPage commentPage = new CommentPage(driver);
+        Methods.clickOnTheButton(homePage.commentButton);
         homePage.switchToCommentPage();
         commentPage.verifyCommentPageUrl();
     }
 
     @Test
     public void testNavigationBackAndForward() {
+        HomePage homePage = new HomePage(driver);
         homePage.navigateBackAndForward();
     }
 
     @Test
     public void testNavigationToLink() {
+        HomePage homePage = new HomePage(driver);
         homePage.navigateToFunnyUrl();
     }
 

@@ -2,8 +2,10 @@ package Tests;
 
 import Base.Base;
 import org.testng.annotations.Test;
-import verification.Methods;
-import verification.Verification;
+import pageObjects.HomePage;
+import pageObjects.SubMenuPage;
+import utility.Methods;
+import utility.Verification;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -11,73 +13,102 @@ import static org.testng.Assert.assertTrue;
 
 public class testSubMenu extends Base {
 
-    Verification verification = new Verification();
-    Methods function = new Methods();
 
     @Test
     public void testMenuIconPresent() {
-        verification.verifyElementIsPresent(homePage.menuButton);
+        HomePage homePage = new HomePage(driver);
+        Verification.verifyElementIsPresent(homePage.menuButton);
     }
 
     @Test
     public void testSubMenuHiding() {
-        function.clickOnTheButton(homePage.menuButton);
-        assertFalse(function.elementIsDisplayed(homePage.hotLabel));
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.menuButton);
+        assertFalse(Methods.elementIsDisplayed(homePage.hotLabel));
     }
 
     @Test
     public void testButtonIsSelected() {
-        function.clickOnTheButton(homePage.hotLabel);
-        assertTrue(function.elementIsSelected(homePage.hotButton));
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.hotLabel);
+        assertTrue(Methods.elementIsSelected(homePage.hotButton));
     }
 
     @Test
     public void testIconMoreOptionsForHotLabel() {
-        function.clickOnTheButton(homePage.hotLabel);
-        function.clickOnTheButton(subMenuPage.iconMore);
-        verification.verifyText("Top Posts", subMenuPage.topPosts);
-        verification.verifyText("Most Recent", subMenuPage.mostRecent);
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.hotLabel);
+        SubMenuPage subMenuPage = new SubMenuPage(driver);
+        Methods.clickOnTheButton(subMenuPage.iconMore);
+        Verification.verifyText("Top Posts", subMenuPage.topPosts);
+        Verification.verifyText("Most Recent", subMenuPage.mostRecent);
     }
 
     @Test
     public void testOptionMenuIsHide() {
-        function.clickOnTheButton(homePage.hotLabel);
-        function.clickOnTheButton(subMenuPage.iconMore);
-        function.clickOnTheButton(subMenuPage.mostRecent);
-        assertFalse(function.elementIsDisplayed(subMenuPage.menu));
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.hotLabel);
+        SubMenuPage subMenuPage = new SubMenuPage(driver);
+        Methods.clickOnTheButton(subMenuPage.iconMore);
+        Methods.clickOnTheButton(subMenuPage.mostRecent);
+        assertFalse(Methods.elementIsDisplayed(subMenuPage.menu));
     }
 
     @Test
     public void testFavoriteTextIsPresent() {
-        function.clickOnTheButton(homePage.starIcon);
-        assertTrue(function.elementIsDisplayed(homePage.favoriteText));
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.starIcon);
+        assertTrue(Methods.elementIsDisplayed(homePage.favoriteText));
     }
 
     @Test
     public void testMarkAsFavorite() {
-        function.clickOnTheButton(homePage.starIcon);
-        assertTrue(function.elementIsDisplayed(homePage.favoriteButton));
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.starIcon);
+        assertTrue(Methods.elementIsDisplayed(homePage.favoriteButton));
     }
 
     @Test
     public void testCheckUncheckAsFavorite() {
-        function.clickOnTheButton(homePage.starIcon);
-        assertTrue(function.elementIsDisplayed(homePage.favoriteButton));
-        function.clickOnTheButton(homePage.favoriteButton);
-        assertFalse(function.elementIsDisplayed(homePage.favoriteButton));
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.starIcon);
+        assertTrue(Methods.elementIsDisplayed(homePage.favoriteButton));
+        Methods.clickOnTheButton(homePage.favoriteButton);
+        assertFalse(Methods.elementIsDisplayed(homePage.favoriteButton));
     }
 
     @Test
     public void testRecentView() {
-        function.clickOnTheButton(homePage.funnyButton);
-        assertTrue(function.elementIsDisplayed(homePage.recentText));
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.funnyButton);
+        assertTrue(Methods.elementIsDisplayed(homePage.recentText));
     }
-//JavaScript popup
+
     @Test
     public void testClearRecentView() {
-        function.clickOnTheButton(homePage.funnyButton);
-        function.clickOnTheButton(homePage.buttonClear);
-        assertFalse(function.elementIsDisplayed(homePage.recentText));
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.funnyButton);
+        Methods.clickOnTheButton(homePage.buttonClear);
+        homePage.acceptAlert();
+        assertFalse(Methods.elementIsDisplayed(homePage.recentText));
+    }
+
+    @Test
+    public void testDismissClearRecentView() {
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.funnyButton);
+        Methods.clickOnTheButton(homePage.buttonClear);
+        homePage.alertClickToDismiss();
+        assertTrue(Methods.elementIsDisplayed(homePage.recentText));
+    }
+
+    @Test
+    public void testClearRecentViewIconCloseButton() {
+        HomePage homePage = new HomePage(driver);
+        Methods.clickOnTheButton(homePage.funnyButton);
+        homePage.moveToElement(homePage.funnyButton);
+        Methods.clickOnTheButton(homePage.iconClose);
+        assertFalse(Methods.elementIsDisplayed(homePage.recentText));
     }
 
 }
