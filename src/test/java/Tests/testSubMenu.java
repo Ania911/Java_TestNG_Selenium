@@ -89,7 +89,8 @@ public class testSubMenu extends Base {
         HomePage homePage = new HomePage(driver);
         Methods.clickOnTheButton(homePage.funnyButton);
         Methods.clickOnTheButton(homePage.buttonClear);
-        homePage.acceptAlert();
+        Methods function = new Methods(driver);
+        function.acceptAlert();
         assertFalse(Methods.elementIsDisplayed(homePage.recentText));
     }
 
@@ -98,7 +99,8 @@ public class testSubMenu extends Base {
         HomePage homePage = new HomePage(driver);
         Methods.clickOnTheButton(homePage.funnyButton);
         Methods.clickOnTheButton(homePage.buttonClear);
-        homePage.alertClickToDismiss();
+        Methods function = new Methods(driver);
+        function.alertClickToDismiss();
         assertTrue(Methods.elementIsDisplayed(homePage.recentText));
     }
 
@@ -106,7 +108,8 @@ public class testSubMenu extends Base {
     public void testClearRecentViewIconCloseButton() {
         HomePage homePage = new HomePage(driver);
         Methods.clickOnTheButton(homePage.funnyButton);
-        homePage.moveToElement(homePage.funnyButton);
+        Methods function = new Methods(driver);
+        function.moveToElement(homePage.funnyButton);
         Methods.clickOnTheButton(homePage.iconClose);
         assertFalse(Methods.elementIsDisplayed(homePage.recentText));
     }

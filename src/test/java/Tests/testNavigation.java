@@ -31,7 +31,8 @@ public class testNavigation extends Base {
         HomePage homePage = new HomePage(driver);
         CommentPage commentPage = new CommentPage(driver);
         Methods.clickOnTheButton(homePage.commentButton);
-        homePage.switchToCommentPage();
+        Methods function = new Methods(driver);
+        function.switchToCommentPage();
         commentPage.verifyCommentPageUrl();
     }
 

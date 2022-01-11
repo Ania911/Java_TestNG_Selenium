@@ -3,6 +3,7 @@ package utility;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -87,6 +88,26 @@ public class Methods {
     public static void selectElementOnTheList(WebElement element, String text) {
         Select selectElement = new Select(element);
         selectElement.selectByVisibleText(text);
+    }
+
+    // JavaScript accept Alert -> OK
+    public  void acceptAlert() {
+        driver.switchTo().alert().accept();
+    }
+
+    // JavaScript dismiss Alert -> Cancel
+    public void alertClickToDismiss() {
+        driver.switchTo().alert().dismiss();
+    }
+
+    public void moveToElement(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
+    }
+
+    public void switchToWindowsPage() {
+        ArrayList<String> tab = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tab.get(1));
     }
 
 }
