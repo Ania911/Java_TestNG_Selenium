@@ -86,6 +86,8 @@ public class testSubMenu extends Base {
 
     @Test
     public void testClearRecentView() {
+
+        //TODO: This test is very slow, try to figure out why.
         HomePage homePage = new HomePage(driver);
         Methods.clickOnTheButton(homePage.funnyButton);
         Methods.clickOnTheButton(homePage.buttonClear);

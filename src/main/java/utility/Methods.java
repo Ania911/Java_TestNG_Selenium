@@ -19,12 +19,17 @@ public class Methods {
 
 
     public static void clickOnTheButton(WebElement element) {
+        //TODO: try to verify that the element is clickable first, then click it
         element.click();
     }
 
     public static boolean elementIsDisplayed(WebElement element) {
+        //TODO: Do not return true/false. Add meaningful messages to catch.
         try {
-            element.isDisplayed();
+            // try to use assertions, like this:
+            // assert element.isDisplayed;
+            // in this case success will give you null and fail will give you false.
+           element.isDisplayed();
             return true;
         } catch (org.openqa.selenium.NoSuchElementException e) {
             return false;
