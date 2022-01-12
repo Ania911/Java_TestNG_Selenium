@@ -1,26 +1,18 @@
 package Base;
 
-import pageObjects.CommentPage;
-import pageObjects.HomePage;
-import pageObjects.SignUpPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-import pageObjects.SubMenuPage;
-import verification.Verification;
 
 import java.util.concurrent.TimeUnit;
 
 
 public class Base {
 
-    protected SignUpPage signUpPage;
-    protected HomePage homePage;
-    protected CommentPage commentPage;
-    protected SubMenuPage subMenuPage;
-
-    private WebDriver driver;
-
+    protected WebDriver driver;
+    //TODO: Try to do browser setup and teardown in @BeforeClass and @AfterClass.
+    // And in each class add @BeforeMethod with code that will recreate needed starting position,
+    // e.g. driver.get("https://9gag.com/");
     @BeforeMethod
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
@@ -29,14 +21,10 @@ public class Base {
         driver.manage().window().maximize();
         driver.get("https://9gag.com/");
 
-
-        signUpPage = new SignUpPage(driver);
-        homePage = new HomePage(driver);
-        commentPage = new CommentPage(driver);
-        subMenuPage = new SubMenuPage(driver);
-
     }
-
+//yes, you can use this method in @BeforeMethod in each test that you need it. But maybe, in some tests
+// you will need to go to some other page. So, it will be good to add some needed links as Constants and pass them
+// as parameters like goToPage(String page) {driver.get(page);}
     public void backToHomePage() {
         driver.get("https://9gag.com/");
     }

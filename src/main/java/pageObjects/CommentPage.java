@@ -4,16 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-import verification.Methods;
-import verification.Verification;
+import utility.Methods;
+import utility.Verification;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CommentPage {
-  Verification verificationCheck = new Verification();
-    Methods function = new Methods();
+
 
     private WebDriver driver;
     @FindBy(xpath = "//div[@class = 'comment-list-item__replies']")
@@ -36,11 +34,11 @@ public class CommentPage {
 
     public void verifyCommentPageUrl() {
         String commentUrl = driver.getCurrentUrl();
-        verificationCheck.verifyCommentUrl(commentUrl, "https://9gag.com/");
+        Verification.verifyCommentUrl(commentUrl, "https://9gag.com/");
     }
 
     public String getCommentText() {
-       return function.getText(commentsList);
+       return Methods.getText(commentsList);
     }
 
     public  void verifyComment(){
@@ -50,7 +48,7 @@ public class CommentPage {
 
     public void verifyAllReplies() {
         arrowDown.click();
-        verificationCheck.verifyElementIsPresent(arrowDownReverse);
+        Verification.verifyElementIsPresent(arrowDownReverse);
     }
 
 

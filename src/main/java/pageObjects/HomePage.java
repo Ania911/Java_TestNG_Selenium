@@ -2,22 +2,17 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import verification.Methods;
-import verification.Verification;
-
+import utility.Verification;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
+
 
 public class HomePage {
     private WebDriver driver;
 
-    Verification verification = new Verification();
-    Methods function = new Methods();
 
     @FindBy(xpath = "//a[@href='/hot']")
     public WebElement hotButton;
@@ -67,6 +62,9 @@ public class HomePage {
     @FindBy(xpath = "//h3[contains(text(),'Recents')]")
     public WebElement recentText;
 
+    @FindBy(xpath = "//i[@class='icon close']")
+    public WebElement iconClose;
+
     @FindBy(xpath = "//a[@class='button-clear']")
     public WebElement buttonClear;
 
@@ -76,29 +74,24 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void verifyHotUrl() {
+    public  void verifyHotUrl() {
         String strUrl = driver.getCurrentUrl();
-        verification.verifyUrl(strUrl, "https://9gag.com/hot");
+        Verification.verifyUrl(strUrl, "https://9gag.com/hot");
     }
 
     public void verifyTrendingUrl() {
         String strUrl = driver.getCurrentUrl();
-        verification.verifyUrl(strUrl, "https://9gag.com/trending");
-    }
-
-    public void switchToCommentPage() {
-        ArrayList<String> tab = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tab.get(1));
+        Verification.verifyUrl(strUrl, "https://9gag.com/trending");
     }
 
     public void navigateBackAndForward() {
         hotButton.click();
         driver.navigate().back();
         String strUrl = driver.getCurrentUrl();
-        verification.verifyUrl(strUrl, "https://9gag.com/");
+        Verification.verifyUrl(strUrl, "https://9gag.com/");
         driver.navigate().forward();
         String strUrl2 = driver.getCurrentUrl();
-        verification.verifyUrl(strUrl2, "https://9gag.com/hot");
+        Verification.verifyUrl(strUrl2, "https://9gag.com/hot");
     }
 
     public void navigateToFunnyUrl() {
