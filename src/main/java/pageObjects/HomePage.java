@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utility.Methods;
 import utility.Verification;
 import java.util.ArrayList;
 import static org.testng.Assert.assertEquals;
@@ -85,11 +84,6 @@ public class HomePage {
         Verification.verifyUrl(strUrl, "https://9gag.com/trending");
     }
 
-    public void switchToCommentPage() {
-        ArrayList<String> tab = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tab.get(1));
-    }
-
     public void navigateBackAndForward() {
         hotButton.click();
         driver.navigate().back();
@@ -106,20 +100,6 @@ public class HomePage {
         assertEquals(text, "Funny");
     }
 
-    // JavaScript accept Alert -> OK
-    public  void acceptAlert() {
-        driver.switchTo().alert().accept();
-    }
-
-    // JavaScript dismiss Alert -> Cancel
-    public void alertClickToDismiss() {
-        driver.switchTo().alert().dismiss();
-    }
-
-    public void moveToElement(WebElement element) {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element);
-    }
 
 }
 

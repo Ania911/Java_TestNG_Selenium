@@ -14,7 +14,8 @@ public class testComments extends Base {
         CommentPage commentPage = new CommentPage(driver);
         HomePage homePage = new HomePage(driver);
         Methods.clickOnTheButton(homePage.commentButton);
-        homePage.switchToCommentPage();
+        Methods function = new Methods(driver);
+        function.switchToCommentPage();
         commentPage.verifyComment();
     }
 
@@ -23,7 +24,8 @@ public class testComments extends Base {
         CommentPage commentPage = new CommentPage(driver);
         HomePage homePage = new HomePage(driver);
         Methods.clickOnTheButton(homePage.commentButton);
-        homePage.switchToCommentPage();
+        Methods function = new Methods(driver);
+        function.switchToCommentPage();
         commentPage.verifyAllReplies();
     }
 
