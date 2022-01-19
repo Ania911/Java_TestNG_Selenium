@@ -1,6 +1,7 @@
 package Tests;
 
 import Base.Base;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pageObjects.CommentPage;
 import pageObjects.HomePage;
@@ -9,20 +10,25 @@ import utility.Verification;
 
 
 public class testNavigation extends Base {
+    @AfterMethod
+    public void backToHomePage() {
+        driver.get("https://9gag.com/");
+    }
 
     @Test
     public void testUrlLinkHot() {
         HomePage homePage = new HomePage(driver);
-        Methods.clickOnTheButton(homePage.hotButton);
+        Methods function = new Methods(driver);
+        function.clickTheButtonWithoutWait(homePage.hotButton);
         homePage.verifyHotUrl();
-        Verification.verifyElementIsPresent(homePage.spiderManButton);
         Verification.verifyElementIsPresent(homePage.omicronButton);
     }
 
     @Test
     public void testUrlLinkTrending() {
         HomePage homePage = new HomePage(driver);
-        Methods.clickOnTheButton(homePage.trendingButton);
+        Methods function = new Methods(driver);
+        function.clickTheButtonWithoutWait(homePage.trendingButton);
         homePage.verifyTrendingUrl();
     }
 
@@ -30,7 +36,7 @@ public class testNavigation extends Base {
     public void testOpenCommentNewPage() {
         HomePage homePage = new HomePage(driver);
         CommentPage commentPage = new CommentPage(driver);
-        Methods.clickOnTheButton(homePage.commentButton);
+        homePage.commentButton.click();
         Methods function = new Methods(driver);
         function.switchToCommentPage();
         commentPage.verifyCommentPageUrl();
