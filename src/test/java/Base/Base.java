@@ -2,9 +2,14 @@ package Base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 
@@ -16,10 +21,25 @@ public class Base {
     // e.g. driver.get("https://9gag.com/");
 
     @BeforeClass
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    @Parameters(value={"browser"})
+    public void setUp(String browser) {
+
+        if (browser.equalsIgnoreCase("Edge"))
+        {
+            System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
+            driver = new EdgeDriver();
+        }
+        else if (browser.equalsIgnoreCase("firefox"))
+        {
+            System.setProperty("webdriver.gecko.driver","src/main/resources/geckodriver.exe");
+            driver = new FirefoxDriver ();
+        }
+        else if (browser.equalsIgnoreCase("chrome"))
+        {
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+            driver = new ChromeDriver ();
+        }
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         driver.get("https://9gag.com/");
     }
@@ -32,7 +52,6 @@ public class Base {
     public void backToHomePage(String page) {
         driver.get(page);
     }
-
 
     @AfterClass
     public void tearDown() {

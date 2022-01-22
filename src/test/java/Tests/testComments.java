@@ -1,8 +1,6 @@
 package Tests;
 
 import Base.Base;
-import io.qameta.allure.Attachment;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import pageObjects.CommentPage;
 import pageObjects.HomePage;
