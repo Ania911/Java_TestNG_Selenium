@@ -4,6 +4,7 @@
 
     <test name="Chrome Test">
         <parameter name="browser" value="chrome"/>
+        <parameter name="platform" value="win"/>
         <classes>
             <class name="Tests.testComments"/>
             <class name="Tests.testLogin"/>
@@ -12,9 +13,10 @@
         </classes>
     </test>
 
+
     <test name="Firefox Test">
         <parameter name="browser" value="firefox"/>
-
+        <parameter name="platform" value="win"/>
         <classes>
             <class name="Tests.testComments"/>
             <class name="Tests.testLogin"/>
@@ -25,6 +27,7 @@
 
     <test name="Edge Test">
         <parameter name="browser" value="edge"/>
+        <parameter name="platform" value="win"/>
         <classes>
             <class name="Tests.testComments"/>
             <class name="Tests.testLogin"/>
@@ -36,7 +39,7 @@
     <!--        <test name="Safari Test">-->
     <!--            <parameter name="browser" value="safari" />-->
     <!--            <parameter name="version" value="11.0" />-->
-    <!--            <parameter name="platform" value="macos 10.13" />-->
+    <!--            <parameter name="platform" value="win" />-->
     <!--            <classes>-->
     <!--                <class name="Tests.testComments"/>-->
     <!--                <class name="Tests.testLogin"/>-->
