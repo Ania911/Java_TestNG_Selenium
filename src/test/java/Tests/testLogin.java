@@ -16,10 +16,10 @@ public class testLogin extends Base {
     public void testSuccessUserLogin() {
         SignUpPage signUpPage = new SignUpPage(driver);
         Methods function = new Methods(driver);
-        function.clickTheButtonWithoutWait(signUpPage.loginButton);
-        Methods.enterText(signUpPage.userName, name);
-        Methods.enterText(signUpPage.userPass, pass);
-        function.clickTheButtonWithoutWait(signUpPage.submitButton);
+        function.clickTheButton(signUpPage.loginButton);
+        function.enterText(signUpPage.userName, name);
+        function.enterText(signUpPage.userPass, pass);
+        function.clickTheButton(signUpPage.submitButton);
         Verification.verifyElementIsPresent(signUpPage.uploadButton);
         signUpPage.logOut();
     }

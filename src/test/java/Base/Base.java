@@ -1,17 +1,7 @@
 package Base;
 
-import com.beust.jcommander.Parameter;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
-
-
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 
 public class Base {

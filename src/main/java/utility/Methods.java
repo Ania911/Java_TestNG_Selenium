@@ -1,27 +1,23 @@
 package utility;
 
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.SearchPage;
 
-import java.time.Duration;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
-import static org.openqa.selenium.remote.ErrorCodes.TIMEOUT;
 
 public class Methods {
     private WebDriver driver;
     private WebDriver.Navigation navigate;
 
-    public Methods(WebDriver driver) {
+    public Methods(WebDriver driver)
+    {
         this.driver = driver;
     }
 
@@ -32,7 +28,6 @@ public class Methods {
     }
 
     public void clickTheButtonWithoutWait(WebElement element) {
-        //DONE: try to verify that the element is clickable first, then click it
         element.click();
     }
 
@@ -86,7 +81,8 @@ public class Methods {
         return elementText;
     }
 
-    public static void enterText(WebElement element, String name) {
+    public void enterText(WebElement element, String name) {
+        waitUntilElementToBeClickable(element);
         element.sendKeys(name);
     }
 
@@ -138,6 +134,13 @@ public class Methods {
     public void switchToWindowsPage() {
         ArrayList<String> tab = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tab.get(1));
+    }
+
+    public void enterSearchText(String text) {
+        SearchPage search = new SearchPage(driver);
+        clickTheButton(search.searchButton);
+        waitUntilElementToBeClickable(search.inputSearchQuery);
+        search.inputSearchQuery.sendKeys(text);
     }
 
 }

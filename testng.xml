@@ -13,7 +13,6 @@
         </classes>
     </test>
 
-
     <test name="Firefox Test">
         <parameter name="browser" value="firefox"/>
         <parameter name="platform" value="win"/>
@@ -21,7 +20,6 @@
             <class name="Tests.testComments"/>
             <class name="Tests.testLogin"/>
             <class name="Tests.testNavigation"/>
-            <class name="Tests.testSubMenu"/>
         </classes>
     </test>
 
@@ -35,17 +33,5 @@
             <class name="Tests.testSubMenu"/>
         </classes>
     </test>
-
-    <!--        <test name="Safari Test">-->
-    <!--            <parameter name="browser" value="safari" />-->
-    <!--            <parameter name="version" value="11.0" />-->
-    <!--            <parameter name="platform" value="win" />-->
-    <!--            <classes>-->
-    <!--                <class name="Tests.testComments"/>-->
-    <!--                <class name="Tests.testLogin"/>-->
-    <!--                <class name="Tests.testNavigation"/>-->
-    <!--                <class name="Tests.testSubMenu"/>-->
-    <!--            </classes>-->
-    <!--        </test>-->
 
 </suite> <!-- Suite -->

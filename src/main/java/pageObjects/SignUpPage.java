@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utility.Methods;
 
 public class SignUpPage {
 
@@ -48,7 +49,10 @@ public class SignUpPage {
     }
 
     public void logOut() {
+        Methods function = new Methods(driver);
+        function.waitUntilElementToBeClickable(avatarIcon);
         avatarIcon.click();
+        function.waitUntilElementToBeClickable(logoutButton);
         logoutButton.click();
     }
 
