@@ -1,5 +1,6 @@
 package utility;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.SearchPage;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
 
@@ -38,7 +40,7 @@ public class Methods {
 
     public void waitUntilElementIsVisible(WebElement element) {
         WebDriverWait shortWait = new WebDriverWait(driver, 10);
-        shortWait.until(ExpectedConditions.visibilityOfAllElements(element));
+        shortWait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void elementIsDisplayed(WebElement element) {
@@ -87,19 +89,19 @@ public class Methods {
     }
 
     public void goBack() {
-        navigate.back();
+        driver.navigate().back();
     }
 
     public void goForward() {
-        navigate.forward();
+        driver.navigate().forward();
     }
 
     public void refreshPage() {
-        navigate.refresh();
+        driver.navigate().refresh();
     }
 
     public void goTo(String url) {
-        navigate.to(url);
+        driver.navigate().to(url);
     }
 
     public void switchToCommentPage() {
@@ -141,6 +143,17 @@ public class Methods {
         clickTheButton(search.searchButton);
         waitUntilElementToBeClickable(search.inputSearchQuery);
         search.inputSearchQuery.sendKeys(text);
+    }
+
+    public void enterSearchTextAndClickEnter(String text) {
+        SearchPage search = new SearchPage(driver);
+        clickTheButton(search.searchButton);
+        waitUntilElementToBeClickable(search.inputSearchQuery);
+        search.inputSearchQuery.sendKeys(text, Keys.ENTER);
+    }
+
+    public void implicitlyWait(Integer number) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(number));
     }
 
 }

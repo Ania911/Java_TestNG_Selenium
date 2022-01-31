@@ -12,17 +12,15 @@ import static org.testng.Assert.*;
 public class Verification {
 
     private static WebDriver driver;
-    public Verification(WebDriver driver)
-    {
+
+    public Verification(WebDriver driver) {
         this.driver = driver;
     }
 
     public static void verifyElementIsPresent(WebElement element) throws NoSuchElementException {
         Methods function = new Methods(driver);
         function.elementIsDisplayed(element);
-        assertTrue(element.isDisplayed());
     }
-
 
     public static void verifyTitleContains(WebElement element) throws NoSuchElementException {
         Methods function = new Methods(driver);
@@ -30,8 +28,7 @@ public class Verification {
         assertTrue(element.isDisplayed());
     }
 
-
-    public  static void verifyUrl(String text, String text1) throws NoSuchElementException {
+    public static void verifyUrl(String text, String text1) throws NoSuchElementException {
         assertEquals(text, text1);
     }
 
