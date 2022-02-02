@@ -15,11 +15,13 @@ public class testLogin extends Base {
     @Test
     public void testSuccessUserLogin() {
         SignUpPage signUpPage = new SignUpPage(driver);
-        Methods.clickOnTheButton(signUpPage.loginButton);
-        Methods.enterText(signUpPage.userName, name);
-        Methods.enterText(signUpPage.userPass, pass);
-        Methods.clickOnTheButton(signUpPage.submitButton);
+        Methods function = new Methods(driver);
+        function.clickTheButton(signUpPage.loginButton);
+        function.enterText(signUpPage.userName, name);
+        function.enterText(signUpPage.userPass, pass);
+        function.clickTheButton(signUpPage.submitButton);
         Verification.verifyElementIsPresent(signUpPage.uploadButton);
+        signUpPage.logOut();
     }
 
     @Test

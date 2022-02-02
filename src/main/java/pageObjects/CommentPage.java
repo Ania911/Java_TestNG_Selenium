@@ -47,7 +47,8 @@ public class CommentPage {
     }
 
     public void verifyAllReplies() {
-        arrowDown.click();
+        Methods function = new Methods(driver);
+        function.clickTheButtonWithoutWait(arrowDown);
         Verification.verifyElementIsPresent(arrowDownReverse);
     }
 

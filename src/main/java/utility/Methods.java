@@ -1,11 +1,16 @@
 package utility;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.SearchPage;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
 
@@ -13,24 +18,42 @@ public class Methods {
     private WebDriver driver;
     private WebDriver.Navigation navigate;
 
-
-    public Methods(WebDriver driver) {
+    public Methods(WebDriver driver)
+    {
         this.driver = driver;
     }
 
-
-    public static void clickOnTheButton(WebElement element) {
-        //TODO: try to verify that the element is clickable first, then click it
+    public void clickTheButton(WebElement element) {
+        //DONE: try to verify that the element is clickable first, then click it
+        waitUntilElementToBeClickable(element);
         element.click();
     }
 
-    public static boolean elementIsDisplayed(WebElement element) {
-        //TODO: Do not return true/false. Add meaningful messages to catch.
+    public void clickTheButtonWithoutWait(WebElement element) {
+        element.click();
+    }
+
+    public void waitUntilElementToBeClickable(WebElement element) {
+        WebDriverWait shortWait = new WebDriverWait(driver, 10);
+        shortWait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void waitUntilElementIsVisible(WebElement element) {
+        WebDriverWait shortWait = new WebDriverWait(driver, 10);
+        shortWait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void elementIsDisplayed(WebElement element) {
+        //DONE: Do not return true/false. Add meaningful messages to catch - Done
+        // success will give you null and fail will give you false.
+        assert element.isDisplayed();
+    }
+
+    public boolean elementIsNotDisplayed(WebElement element) {
         try {
-            // try to use assertions, like this:
-            // assert element.isDisplayed;
-            // in this case success will give you null and fail will give you false.
-           element.isDisplayed();
+            //TODO: Try to make it work, find a solution to assert negative (e.g. NOT displayed)
+            // assert !element.isDisplayed(); doesn't work for me
+            element.isDisplayed();
             return true;
         } catch (org.openqa.selenium.NoSuchElementException e) {
             return false;
@@ -39,6 +62,7 @@ public class Methods {
 
     public static Boolean elementIsSelected(WebElement element) {
         try {
+            //TODO: Do assertions in all methods
             element.isSelected();
             return true;
         } catch (org.openqa.selenium.NoSuchElementException e) {
@@ -46,7 +70,7 @@ public class Methods {
         }
     }
 
-    public  Boolean elementIsEnabled(WebElement element) {
+    public Boolean elementIsEnabled(WebElement element) {
         try {
             element.isEnabled();
             return true;
@@ -61,24 +85,25 @@ public class Methods {
         return elementText;
     }
 
-    public static void enterText(WebElement element, String name) {
+    public void enterText(WebElement element, String name) {
+        waitUntilElementToBeClickable(element);
         element.sendKeys(name);
     }
 
     public void goBack() {
-        navigate.back();
+        driver.navigate().back();
     }
 
     public void goForward() {
-        navigate.forward();
+        driver.navigate().forward();
     }
 
     public void refreshPage() {
-        navigate.refresh();
+        driver.navigate().refresh();
     }
 
     public void goTo(String url) {
-        navigate.to(url);
+        driver.navigate().to(url);
     }
 
     public void switchToCommentPage() {
@@ -96,7 +121,7 @@ public class Methods {
     }
 
     // JavaScript accept Alert -> OK
-    public  void acceptAlert() {
+    public void acceptAlert() {
         driver.switchTo().alert().accept();
     }
 
@@ -113,6 +138,24 @@ public class Methods {
     public void switchToWindowsPage() {
         ArrayList<String> tab = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tab.get(1));
+    }
+
+    public void enterSearchText(String text) {
+        SearchPage search = new SearchPage(driver);
+        clickTheButton(search.searchButton);
+        waitUntilElementToBeClickable(search.inputSearchQuery);
+        search.inputSearchQuery.sendKeys(text);
+    }
+
+    public void enterSearchTextAndClickEnter(String text) {
+        SearchPage search = new SearchPage(driver);
+        clickTheButton(search.searchButton);
+        waitUntilElementToBeClickable(search.inputSearchQuery);
+        search.inputSearchQuery.sendKeys(text, Keys.ENTER);
+    }
+
+    public void implicitlyWait(Integer number) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(number));
     }
 
 }
