@@ -51,6 +51,7 @@ public class Methods {
 
     public boolean elementIsNotDisplayed(WebElement element) {
         try {
+            //TODO: Try to make it work, find a solution to assert negative (e.g. NOT displayed)
             // assert !element.isDisplayed(); doesn't work for me
             element.isDisplayed();
             return true;
@@ -61,6 +62,7 @@ public class Methods {
 
     public static Boolean elementIsSelected(WebElement element) {
         try {
+            //TODO: Do assertions in all methods
             element.isSelected();
             return true;
         } catch (org.openqa.selenium.NoSuchElementException e) {
