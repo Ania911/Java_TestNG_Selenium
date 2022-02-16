@@ -3,24 +3,25 @@ package API;
 
 public class RequestBody {
 
-    public static final String requestBodyAddNewPetsToStore = "{\n" +
-            "  \"id\": 0,\n" +
-            "  \"category\": {\n" +
-            "    \"id\": 0,\n" +
-            "    \"name\": \"Test\"\n" +
-            "  },\n" +
-            "  \"name\": \"doggie\",\n" +
-            "  \"photoUrls\": [\n" +
-            "    \"string\"\n" +
-            "  ],\n" +
-            "  \"tags\": [\n" +
-            "    {\n" +
-            "      \"id\": 0,\n" +
-            "      \"name\": \"string\"\n" +
-            "    }\n" +
-            "  ],\n" +
-            "  \"status\": \"available\"\n" +
-            "}";
+    public static final String requestBodyAddNewPetsToStore = """
+            {
+              "id": 5,
+              "category": {
+                "id": 5,
+                "name": "Test"
+              },
+              "name": "doggie",
+              "photoUrls": [
+                "string"
+              ],
+              "tags": [
+                {
+                  "id": 0,
+                  "name": "string"
+                }
+              ],
+              "status": "available"
+            }""";
 
     public static final String addNewPetsToStoreWrongBody = "  ";
 

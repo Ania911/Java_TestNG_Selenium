@@ -9,6 +9,8 @@ public class Elements {
 
     // Create new pet
     public static final String createNewPet = "/pet";
-
-
+    //Get pets by id
+    public static final String getPetById = "/pet/";
+    //Delete pets by id
+    public static final String deletePet = "/pet/";
 }

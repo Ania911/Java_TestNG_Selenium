@@ -34,21 +34,37 @@ public class restAssurePetTests extends Config {
     }
 
     @Test
-    public void testAddNewPetToStoreValidation() {
-        APIMethods.createPost("name", "Ania_test", createNewPet, 200);
-    }
-
-    @Test
-    public void testAddNewPetToStoreHashMap() {
-        APIMethods.createPostHashMap("name", "Test", "status", "available", createNewPet, 200);
-    }
-
-    @Test
     public void testAddNewPetsValidation() {
         APIMethods.createPostRequest(createNewPet, RequestBody.addNewPetsToStoreWrongBody, 405);
     }
 
+    //CRUD
+    @Test
+    public void testAddNewPetToStoreHashMap() {
+        APIMethods.createPostHashMap("id", 1, "name", "Test", "status", "available", createNewPet, 200);
+    }
 
+    @Test
+    public void testGetPetByID() {
+        APIMethods.getPetsStatusById(getPetById, 1)
+                .assertThat().body("id", equalTo(1));
+    }
 
+    @Test
+    public void testUpdatePet() {
+        APIMethods.updatePutHashMap("id", 1, "name", "TestUpdate", "status", "sold", createNewPet, 200);
+    }
+
+    @Test
+    public void testDeletePet() {
+        APIMethods.deleteRequest(deletePet, 1, 200);
+    }
+
+    @Test
+    public void testGetDeletedPet() {
+        APIMethods.getPetsStatusById(getPetById, 1)
+                .assertThat().body("message", equalTo( "Pet not found"))
+                .assertThat().statusCode(404);
+    }
 
 }
