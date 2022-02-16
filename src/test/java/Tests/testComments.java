@@ -6,8 +6,6 @@ import pageObjects.CommentPage;
 import pageObjects.HomePage;
 import utility.Methods;
 
-import static java.lang.Thread.sleep;
-
 
 public class testComments extends Base {
 

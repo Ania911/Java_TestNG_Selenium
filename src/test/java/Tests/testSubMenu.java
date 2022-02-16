@@ -1,6 +1,7 @@
 package Tests;
 
 import Base.Base;
+import com.sun.source.tree.AssertTree;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -39,7 +40,7 @@ public class testSubMenu extends Base {
         HomePage homePage = new HomePage(driver);
         Methods function = new Methods(driver);
         function.clickTheButton(homePage.hotLabel);
-        assertTrue(Methods.elementIsSelected(homePage.hotButton));
+        function.elementIsDisplayed(homePage.selectedLabel);
     }
 
     @Test

@@ -80,7 +80,7 @@ public class APIMethods {
     }
 
     public static void createPostRequest(String endpoint, String requestBody, Integer statusCode) {
-       given()
+        given()
                 .header("Content-type", "application/json")
                 .and()
                 .body(requestBody)
@@ -88,7 +88,7 @@ public class APIMethods {
                 .post(endpoint)
                 .then()
                 .statusCode(statusCode).log().all();
-       }
+    }
 
 
     public static void deleteRequest(String endpoint, Integer id, Integer statusCode) {
@@ -98,4 +98,5 @@ public class APIMethods {
                 .then()
                 .statusCode(statusCode).log().all();
     }
+
 }

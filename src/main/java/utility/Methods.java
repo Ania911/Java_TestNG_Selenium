@@ -60,23 +60,13 @@ public class Methods {
         }
     }
 
-    public static Boolean elementIsSelected(WebElement element) {
-        try {
-            //TODO: Do assertions in all methods
-            element.isSelected();
-            return true;
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+    public static void elementIsSelected(WebElement element) {
+            //DONE: Do assertions in all methods
+            assert element.isSelected();
     }
 
-    public Boolean elementIsEnabled(WebElement element) {
-        try {
+    public void elementIsEnabled(WebElement element) {
             element.isEnabled();
-            return true;
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
     }
 
     public static String getText(WebElement element) throws NoSuchElementException {

@@ -20,6 +20,9 @@ public class HomePage {
     @FindBy(xpath = "//a[@href='/hot' and @class='label']")
     public WebElement hotLabel;
 
+    @FindBy(xpath = "//li[@class='selected'] ")
+    public WebElement selectedLabel;
+
     @FindBy(xpath = "//a[@href='/trending']")
     public WebElement trendingButton;
 

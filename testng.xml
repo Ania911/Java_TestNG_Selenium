@@ -14,27 +14,33 @@
         </classes>
     </test>
 
-    <test name="Firefox Test">
-        <parameter name="browser" value="firefox"/>
-        <parameter name="platform" value="win"/>
+    <test name="API Test">
         <classes>
-            <class name="Tests.testComments"/>
-            <class name="Tests.testLogin"/>
-            <class name="Tests.testNavigation"/>
-            <class name="Tests.testSearch"/>
+            <class name="Rest_Assure.restAssurePetTests"/>
         </classes>
     </test>
 
-    <test name="Edge Test">
-        <parameter name="browser" value="edge"/>
-        <parameter name="platform" value="win"/>
-        <classes>
-            <class name="Tests.testComments"/>
-            <class name="Tests.testLogin"/>
-            <class name="Tests.testNavigation"/>
-            <class name="Tests.testSubMenu"/>
-            <class name="Tests.testSearch"/>
-        </classes>
-    </test>
+<!--    <test name="Firefox Test">-->
+<!--        <parameter name="browser" value="firefox"/>-->
+<!--        <parameter name="platform" value="win"/>-->
+<!--        <classes>-->
+<!--            <class name="Tests.testComments"/>-->
+<!--            <class name="Tests.testLogin"/>-->
+<!--            <class name="Tests.testNavigation"/>-->
+<!--            <class name="Tests.testSearch"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test name="Edge Test">-->
+<!--        <parameter name="browser" value="edge"/>-->
+<!--        <parameter name="platform" value="win"/>-->
+<!--        <classes>-->
+<!--            <class name="Tests.testComments"/>-->
+<!--            <class name="Tests.testLogin"/>-->
+<!--            <class name="Tests.testNavigation"/>-->
+<!--            <class name="Tests.testSubMenu"/>-->
+<!--            <class name="Tests.testSearch"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite> <!-- Suite -->
