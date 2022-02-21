@@ -1,18 +1,9 @@
 package API;
 
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
-import org.hamcrest.Matchers;
 import org.json.simple.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.*;
@@ -90,13 +81,24 @@ public class APIMethods {
                 .statusCode(statusCode).log().all();
     }
 
-
     public static void deleteRequest(String endpoint, Integer id, Integer statusCode) {
         given()
                 .when()
                 .delete(endpoint + id)
                 .then()
                 .statusCode(statusCode).log().all();
+    }
+
+    public static void request(int id, String name, String status, String endpoint) {
+        Pet body = new Pet(id, name, status);
+        given()
+                .body(body)
+                .when()
+                .post(endpoint)
+                .then();
+        System.out.println(endpoint);
+        System.out.println(body);
+           //     .log().all();
     }
 
 }

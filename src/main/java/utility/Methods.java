@@ -46,6 +46,7 @@ public class Methods {
     public void elementIsDisplayed(WebElement element) {
         //DONE: Do not return true/false. Add meaningful messages to catch - Done
         // success will give you null and fail will give you false.
+       // waitUntilElementIsVisible(element);
         assert element.isDisplayed();
     }
 
