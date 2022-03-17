@@ -41,11 +41,11 @@ public class WebDriverFactory {
 //        } else if (platform.equals("mac") & browser.equalsIgnoreCase("chrome")) {
 //            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //            driver = new ChromeDriver();
-      }
+        }
 
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+        driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
     }
 

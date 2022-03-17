@@ -3,11 +3,19 @@ package API;
 
 public class Pet {
 
-    public int id;
-    public String name;
-    public String status;
+    private int id;
+    private String name;
+    private String status;
+
+    public Pet(){}
 
     //Used for post request
+    public Pet(String name, String status) {
+        setName(name);
+        setStatus(status);
+    }
+
+    //Used for Update request
     public Pet(int id, String name, String status) {
         setId(id);
         setName(name);

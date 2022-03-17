@@ -89,8 +89,8 @@ public class APIMethods {
                 .statusCode(statusCode).log().all();
     }
 
-    public static void request(int id, String name, String status, String endpoint) {
-        Pet body = new Pet(id, name, status);
+    public static void request(String name, String status, String endpoint) {
+        Pet body = new Pet(name, status);
         given()
                 .body(body)
                 .when()

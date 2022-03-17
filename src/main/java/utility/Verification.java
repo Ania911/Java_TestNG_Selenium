@@ -22,12 +22,6 @@ public class Verification {
         function.elementIsDisplayed(element);
     }
 
-    public static void verifyTitleContains(WebElement element) throws NoSuchElementException {
-        Methods function = new Methods(driver);
-        function.elementIsDisplayed(element);
-        assertTrue(element.isDisplayed());
-    }
-
     public static void verifyUrl(String text, String text1) throws NoSuchElementException {
         assertEquals(text, text1);
     }

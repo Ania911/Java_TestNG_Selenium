@@ -33,20 +33,22 @@ public class Methods {
         element.click();
     }
 
-    public void waitUntilElementToBeClickable(WebElement element) {
+    public WebElement waitUntilElementToBeClickable(WebElement element) {
         WebDriverWait shortWait = new WebDriverWait(driver, 10);
         shortWait.until(ExpectedConditions.elementToBeClickable(element));
+        return element;
     }
 
-    public void waitUntilElementIsVisible(WebElement element) {
+    public WebElement waitUntilElementIsVisible(WebElement element) {
         WebDriverWait shortWait = new WebDriverWait(driver, 10);
         shortWait.until(ExpectedConditions.visibilityOf(element));
+        return element;
     }
 
     public void elementIsDisplayed(WebElement element) {
         //DONE: Do not return true/false. Add meaningful messages to catch - Done
         // success will give you null and fail will give you false.
-       // waitUntilElementIsVisible(element);
+        waitUntilElementIsVisible(element);
         assert element.isDisplayed();
     }
 
@@ -141,7 +143,6 @@ public class Methods {
     public void enterSearchTextAndClickEnter(String text) {
         SearchPage search = new SearchPage(driver);
         clickTheButton(search.searchButton);
-        waitUntilElementToBeClickable(search.inputSearchQuery);
         search.inputSearchQuery.sendKeys(text, Keys.ENTER);
     }
 

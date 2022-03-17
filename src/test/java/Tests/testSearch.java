@@ -1,46 +1,43 @@
 package Tests;
 
 import Base.Base;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObjects.SearchPage;
 import utility.Methods;
 
 
-import java.time.Duration;
-
-import static utility.Verification.verifyElementIsPresent;
-
 public class testSearch extends Base {
 
-    @Override
-    @AfterClass
-    public void tearDown() {
+    private SearchPage search;
+    private Methods function;
+
+    @BeforeMethod
+    public void setUp() {
+        search = new SearchPage(driver);
+        function = new Methods(driver);
+    }
+
+    @AfterMethod
+    public void tearDownAfter() {
+        search = null;
+        function = null;
         backToHomePage("https://9gag.com/");
-        driver.quit();
     }
 
     @Test
-    public void testSuggestedSearchResultIsPresent() {
-        SearchPage search = new SearchPage(driver);
-        Methods function = new Methods(driver);
+    public void testSearchResultHint() {
         function.enterSearchText("Tesla");
-        function.implicitlyWait(15);
-        verifyElementIsPresent(search.suggestedSearchResultForTesla);
+        function.elementIsDisplayed(search.suggestedSearchResultForTesla);
     }
 
     @Test
     public void testSearchBarIsPresent() {
-        SearchPage search = new SearchPage(driver);
-        Methods function = new Methods(driver);
         function.enterSearchTextAndClickEnter("Tesla");
-        verifyElementIsPresent(search.searchBar);
+        function.elementIsDisplayed(search.searchBar);
     }
 
     @Test
     public void testSearchResultLink() {
-        SearchPage search = new SearchPage(driver);
-        Methods function = new Methods(driver);
         function.enterSearchTextAndClickEnter("Tesla");
         function.clickTheButton(search.teslaSearchResultLink);
         function.elementIsNotDisplayed(search.searchBar);
@@ -48,21 +45,19 @@ public class testSearch extends Base {
 
     @Test
     public void testClearSearchInputField() {
-        SearchPage search = new SearchPage(driver);
-        Methods function = new Methods(driver);
         function.enterSearchTextAndClickEnter("Tesla");
         search.searchBar.clear();
         function.enterSearchTextAndClickEnter("Apple");
-        verifyElementIsPresent(search.appleSearchResultLink);
+        function.elementIsDisplayed(search.appleSearchResultLink);
     }
 
     @Test
     public void testSaveSearchAfterRefreshing() {
-        SearchPage search = new SearchPage(driver);
-        Methods function = new Methods(driver);
         function.enterSearchTextAndClickEnter("Tesla");
+        function.elementIsDisplayed(search.teslaSearchResultLink);
         function.refreshPage();
-        verifyElementIsPresent(search.teslaSearchResultLink);
+        function.elementIsDisplayed(search.teslaSearchResultLink);
     }
 
 }
+

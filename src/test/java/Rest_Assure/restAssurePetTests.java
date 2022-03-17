@@ -2,10 +2,7 @@ package Rest_Assure;
 
 import API.APIMethods;
 import API.Config;
-import API.Pet;
 import org.testng.annotations.Test;
-
-import static API.APIMethods.request;
 import static API.Elements.*;
 import static org.hamcrest.Matchers.*;
 
@@ -36,7 +33,7 @@ public class restAssurePetTests extends Config {
 // Create Pet using Pet class
     @Test
     public void testAddNewPetToStorePetClass() {
-        APIMethods.request(2, "name", "pending", createNewPet);
+        APIMethods.request("Test", "available", createNewPet);
     }
 
     //CRUD
