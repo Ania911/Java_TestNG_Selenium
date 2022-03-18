@@ -32,10 +32,10 @@ public class HomePage {
     @FindBy(xpath = "//a[@href = '/tag/top-gifs-2021?ref=featured-tag']")
     public WebElement topButton;
 
-    @FindBy(xpath = "//a[@href = '/tag/omicron?ref=featured-tag']")
-    public WebElement omicronButton;
+    @FindBy(xpath = "//a[@href='/hot' and @class='selected']")
+    public WebElement selectedButton;
 
-    @FindBy(xpath = "//a[@data-position = '1']")
+    @FindBy(xpath = "//a[@data-position=\"1\"]")
     public WebElement commentButton;
 
     @FindBy(xpath = "//h2[contains(text(),'Funny')]")
@@ -82,19 +82,19 @@ public class HomePage {
         Verification.verifyUrl(strUrl, "https://9gag.com/hot");
     }
 
-    public void verifyTrendingUrl() {
+    public void verifyUrl(String url) {
         String strUrl = driver.getCurrentUrl();
-        Verification.verifyUrl(strUrl, "https://9gag.com/trending");
+        Verification.verifyUrl(strUrl, url);
     }
 
-    public void navigateBackAndForward() {
+    public void navigateBackAndForward(String baseUrl, String backUrl) {
         hotButton.click();
         driver.navigate().back();
         String strUrl = driver.getCurrentUrl();
-        Verification.verifyUrl(strUrl, "https://9gag.com/");
+        Verification.verifyUrl(strUrl, baseUrl);
         driver.navigate().forward();
         String strUrl2 = driver.getCurrentUrl();
-        Verification.verifyUrl(strUrl2, "https://9gag.com/hot");
+        Verification.verifyUrl(strUrl2, backUrl);
     }
 
     public void navigateToFunnyUrl() {

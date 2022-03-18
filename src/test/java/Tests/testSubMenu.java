@@ -6,11 +6,15 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
+import pageObjects.SignUpPage;
 import pageObjects.SubMenuPage;
 import utility.Methods;
 import utility.Verification;
+
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -18,18 +22,30 @@ import static org.testng.Assert.assertTrue;
 @Feature("SubMenu button functionality")
 public class testSubMenu extends Base {
 
+    private HomePage homePage;
+    private Methods function;
+
+    @BeforeMethod
+    public void setUp() {
+        homePage = new HomePage(driver);
+        function = new Methods(driver);
+    }
+
+    @AfterMethod
+    public void tearDownAfter() {
+        homePage = null;
+        function = null;
+    }
+
     @Test
     @Severity(SeverityLevel.CRITICAL)
     public void testMenuIconPresent() {
-        HomePage homePage = new HomePage(driver);
-        Verification.verifyElementIsPresent(homePage.menuButton);
+        function.elementIsDisplayed(homePage.menuButton);
     }
 
     @Test
     @Severity(SeverityLevel.CRITICAL)
     public void testSubMenuHiding() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         function.clickTheButton(homePage.menuButton);
         assertFalse(function.elementIsNotDisplayed(homePage.hotLabel));
     }
@@ -37,8 +53,6 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testButtonIsSelected() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         function.clickTheButton(homePage.hotLabel);
         function.elementIsDisplayed(homePage.selectedLabel);
     }
@@ -46,8 +60,6 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testIconMoreOptionsForHotLabel() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         function.clickTheButton(homePage.hotLabel);
         SubMenuPage subMenuPage = new SubMenuPage(driver);
         function.clickTheButton(subMenuPage.iconMore);
@@ -58,8 +70,6 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testOptionMenuIsHide() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         function.clickTheButton(homePage.hotLabel);
         SubMenuPage subMenuPage = new SubMenuPage(driver);
         function.clickTheButton(subMenuPage.iconMore);
@@ -70,8 +80,6 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testFavoriteTextIsPresent() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         function.clickTheButton(homePage.starIcon);
         function.elementIsDisplayed(homePage.favoriteText);
     }
@@ -79,8 +87,6 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testMarkAsFavorite() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         if (homePage.favoriteButton.isDisplayed()) {
             function.clickTheButton(homePage.starIcon);
         } else {
@@ -92,8 +98,6 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testCheckUncheckAsFavorite() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         function.clickTheButton(homePage.starIcon);
         function.clickTheButton(homePage.favoriteButton);
         assertFalse(function.elementIsNotDisplayed(homePage.favoriteButton));
@@ -102,8 +106,6 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testRecentView() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         function.clickTheButton(homePage.funnyButton);
         function.elementIsDisplayed(homePage.recentText);
 
@@ -112,9 +114,7 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testClearRecentView() {
-        //TODO: This test is very slow, try to figure out why.
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
+        //Done: This test is very slow, try to figure out why.
         function.clickTheButton(homePage.funnyButton);
         function.clickTheButton(homePage.buttonClear);
         function.acceptAlert();
@@ -124,8 +124,6 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testDismissClearRecentView() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         function.clickTheButton(homePage.funnyButton);
         function.clickTheButton(homePage.buttonClear);
         function.alertClickToDismiss();
@@ -135,8 +133,6 @@ public class testSubMenu extends Base {
     @Test
     @Severity(SeverityLevel.NORMAL)
     public void testClearRecentViewIconCloseButton() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
         function.clickTheButton(homePage.funnyButton);
         function.moveToElement(homePage.funnyButton);
         homePage.iconClose.click();

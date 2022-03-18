@@ -42,7 +42,7 @@ public class WebDriverFactory {
 //            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //            driver = new ChromeDriver();
         }
-
+//
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));

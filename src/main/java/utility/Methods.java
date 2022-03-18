@@ -1,9 +1,6 @@
 package utility;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -25,6 +22,13 @@ public class Methods {
 
     public void clickTheButton(WebElement element) {
         //DONE: try to verify that the element is clickable first, then click it
+        waitUntilElementToBeClickable(element);
+        element.click();
+    }
+
+    public void scrollDown(WebElement element) {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,250)");
         waitUntilElementToBeClickable(element);
         element.click();
     }
