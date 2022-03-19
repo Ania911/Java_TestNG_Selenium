@@ -4,7 +4,6 @@ import Base.Base;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObjects.CommentPage;
 import pageObjects.HomePage;
 import utility.Methods;
 
@@ -36,16 +35,9 @@ public class testNavigation extends Base {
     @Test
     public void testUrlLinkTrending() {
         function.clickTheButton(homePage.trendingButton);
-        homePage.verifyUrl("https://9gag.com/trending");
+        homePage.verifyUrl("https://9gag.com/");
     }
 
-    @Test
-    public void testOpenCommentNewPage() {
-        CommentPage commentPage = new CommentPage(driver);
-        function.scrollDown(homePage.commentButton);
-        function.switchToCommentPage();
-        commentPage.verifyCommentPageUrl();
-    }
 
     @Test
     public void testNavigationBackAndForward() {
@@ -54,7 +46,6 @@ public class testNavigation extends Base {
 
     @Test
     public void testNavigationToLink() {
-
         homePage.navigateToFunnyUrl();
     }
 

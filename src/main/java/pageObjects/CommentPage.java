@@ -46,8 +46,8 @@ public class CommentPage {
 
     public void verifyAllReplies() {
         Methods function = new Methods(driver);
-        function.clickTheButtonWithoutWait(arrowDown);
-        Verification.verifyElementIsPresent(arrowDownReverse);
+        function.clickTheButton(arrowDown);
+        function.elementIsDisplayed(arrowDownReverse);
     }
 
 

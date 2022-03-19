@@ -6,13 +6,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageObjects.CommentPage;
 import pageObjects.HomePage;
-import pageObjects.SignUpPage;
 import utility.Methods;
 
 
 public class testComments extends Base {
 
-    private  CommentPage commentPage;
+    private CommentPage commentPage;
     private HomePage homePage;
     private Methods function;
 
@@ -41,7 +40,15 @@ public class testComments extends Base {
     public void testViewHideAllReplies() {
         function.clickTheButton(homePage.commentButton);
         function.switchToCommentPage();
-        commentPage.verifyAllReplies();
+        function.clickTheButton(commentPage.arrowDown);
+        function.elementIsDisplayed(commentPage.arrowDownReverse);
+    }
+
+    @Test
+    public void testOpenCommentNewPage() {
+        function.clickTheButton(homePage.commentButton);
+        function.switchToCommentPage();
+        commentPage.verifyCommentPageUrl();
     }
 
 }

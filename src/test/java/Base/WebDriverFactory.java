@@ -43,8 +43,8 @@ public class WebDriverFactory {
 //            driver = new ChromeDriver();
         }
 //
-        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
-        driver = new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
     }

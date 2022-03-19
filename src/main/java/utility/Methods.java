@@ -22,15 +22,13 @@ public class Methods {
 
     public void clickTheButton(WebElement element) {
         //DONE: try to verify that the element is clickable first, then click it
-        waitUntilElementToBeClickable(element);
-        element.click();
+        waitUntilElementToBeClickable(element).click();
     }
 
     public void scrollDown(WebElement element) {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         jse.executeScript("window.scrollBy(0,250)");
-        waitUntilElementToBeClickable(element);
-        element.click();
+        waitUntilElementToBeClickable(element).click();
     }
 
     public void clickTheButtonWithoutWait(WebElement element) {

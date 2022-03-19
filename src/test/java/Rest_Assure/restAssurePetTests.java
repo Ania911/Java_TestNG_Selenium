@@ -43,7 +43,7 @@ public class restAssurePetTests extends Config {
     }
 
     @Test
-    public void testGetPetByID() {
+    public void testAddNewPetsGetPetByID() {
         APIMethods.getPetsStatusById(getPetById, 1)
                 .assertThat().body("id", equalTo(1));
     }

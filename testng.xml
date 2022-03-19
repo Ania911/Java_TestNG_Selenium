@@ -2,17 +2,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="tests">
 
-    <!--    <test name="Chrome Test">-->
-    <!--        <parameter name="browser" value="chrome"/>-->
-    <!--        <parameter name="platform" value="win"/>-->
-    <!--        <classes>-->
-    <!--            <class name="Tests.testComments"/>-->
-    <!--            <class name="Tests.testLogin"/>-->
-    <!--            <class name="Tests.testNavigation"/>-->
-    <!--            <class name="Tests.testSubMenu"/>-->
-    <!--            <class name="Tests.testSearch"/>-->
-    <!--        </classes>-->
-    <!--    </test>-->
+        <test name="Chrome Test">
+            <parameter name="browser" value="chrome"/>
+            <parameter name="platform" value="win"/>
+            <classes>
+                <class name="Tests.testComments"/>
+                <class name="Tests.testLogin"/>
+                <class name="Tests.testNavigation"/>
+                <class name="Tests.testSubMenu"/>
+                <class name="Tests.testSearch"/>
+            </classes>
+        </test>
 
     <test name="API Test">
         <classes>
@@ -20,17 +20,17 @@
         </classes>
     </test>
 
-    <test name="Firefox Test">
-        <parameter name="browser" value="firefox"/>
-        <parameter name="platform" value="win"/>
-        <classes>
-            <class name="Tests.testLogin"/>
-            <class name="Tests.testNavigation"/>
-            <class name="Tests.testSubMenu"/>
-            <class name="Tests.testSearch"/>
-        </classes>
+<!--    <test name="Firefox Test">-->
+<!--        <parameter name="browser" value="firefox"/>-->
+<!--        <parameter name="platform" value="win"/>-->
+<!--        <classes>-->
+<!--            <class name="Tests.testLogin"/>-->
+<!--            <class name="Tests.testNavigation"/>-->
+<!--            <class name="Tests.testSubMenu"/>-->
+<!--            <class name="Tests.testSearch"/>-->
+<!--        </classes>-->
 
-    </test>
+<!--    </test>-->
 
     <!--    <test name="Edge Test">-->
     <!--        <parameter name="browser" value="edge"/>-->
