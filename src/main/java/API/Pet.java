@@ -10,7 +10,7 @@ public class Pet {
     public Pet(){}
 
     //Used for post request
-    public Pet(String name, String status) {
+    public Pet (String name, String status) {
         setName(name);
         setStatus(status);
     }

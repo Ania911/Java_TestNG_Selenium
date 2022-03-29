@@ -25,15 +25,15 @@ public class APIMethods {
                 .then().log().all();
     }
 
-    public static void createPost(String key, String value, String endpoint, Integer statusCode) {
+    public static ValidatableResponse createPostRequest(String key, String value, String endpoint) {
         JSONObject request = new JSONObject();
         request.put(key, value);
-        given().
+     return   given().
                 header("Content-type", "application/json").
                 contentType(JSON).
                 body(request.toJSONString()).
                 when().post(endpoint).
-                then().statusCode(statusCode).log().all();
+                then().log().all();
     }
 
     public static void createPostHashMap(String id, Integer value, String nameKey, String nameValue, String statusKey, String statusValue, String createNewPet, Integer statusCode) {
@@ -95,10 +95,9 @@ public class APIMethods {
                 .body(body)
                 .when()
                 .post(endpoint)
-                .then();
+                .then().statusCode(200).log().all();
         System.out.println(endpoint);
         System.out.println(body);
-           //     .log().all();
     }
 
 }

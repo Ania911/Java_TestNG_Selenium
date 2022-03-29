@@ -28,9 +28,12 @@ public class restAssurePetTests extends Config {
 
     @Test
     public void testAddNewPetToStore() {
-        APIMethods.createPost("name", "Ania_test", createNewPet, 200);
+        APIMethods.createPostRequest("name", "Ania_test", createNewPet)
+                .assertThat().body("name", equalTo("Ania_test"))
+                .assertThat().statusCode(200);
     }
-// Create Pet using Pet class
+
+    // Create Pet using Pet class
     @Test
     public void testAddNewPetToStorePetClass() {
         APIMethods.request("Test", "available", createNewPet);
@@ -61,7 +64,7 @@ public class restAssurePetTests extends Config {
     @Test
     public void testGetDeletedPet() {
         APIMethods.getPetsStatusById(getPetById, 1)
-                .assertThat().body("message", equalTo( "Pet not found"))
+                .assertThat().body("message", equalTo("Pet not found"))
                 .assertThat().statusCode(404);
     }
 

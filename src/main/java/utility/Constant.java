@@ -5,5 +5,4 @@ public class Constant {
     public static final String pass = "testqa911@//";
     public static final String wrongPass = "testqa1//";
 
-
 }
