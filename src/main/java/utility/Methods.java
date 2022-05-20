@@ -1,9 +1,6 @@
 package utility;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -25,27 +22,35 @@ public class Methods {
 
     public void clickTheButton(WebElement element) {
         //DONE: try to verify that the element is clickable first, then click it
-        waitUntilElementToBeClickable(element);
-        element.click();
+        waitUntilElementToBeClickable(element).click();
+    }
+
+    public void scrollDown(WebElement element) {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,250)");
+        waitUntilElementToBeClickable(element).click();
     }
 
     public void clickTheButtonWithoutWait(WebElement element) {
         element.click();
     }
 
-    public void waitUntilElementToBeClickable(WebElement element) {
+    public WebElement waitUntilElementToBeClickable(WebElement element) {
         WebDriverWait shortWait = new WebDriverWait(driver, 10);
         shortWait.until(ExpectedConditions.elementToBeClickable(element));
+        return element;
     }
 
-    public void waitUntilElementIsVisible(WebElement element) {
+    public WebElement waitUntilElementIsVisible(WebElement element) {
         WebDriverWait shortWait = new WebDriverWait(driver, 10);
         shortWait.until(ExpectedConditions.visibilityOf(element));
+        return element;
     }
 
     public void elementIsDisplayed(WebElement element) {
         //DONE: Do not return true/false. Add meaningful messages to catch - Done
         // success will give you null and fail will give you false.
+        waitUntilElementIsVisible(element);
         assert element.isDisplayed();
     }
 
@@ -60,23 +65,13 @@ public class Methods {
         }
     }
 
-    public static Boolean elementIsSelected(WebElement element) {
-        try {
-            //TODO: Do assertions in all methods
-            element.isSelected();
-            return true;
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
+    public static void elementIsSelected(WebElement element) {
+            //DONE: Do assertions in all methods
+            assert element.isSelected();
     }
 
-    public Boolean elementIsEnabled(WebElement element) {
-        try {
+    public void elementIsEnabled(WebElement element) {
             element.isEnabled();
-            return true;
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
     }
 
     public static String getText(WebElement element) throws NoSuchElementException {
@@ -150,7 +145,6 @@ public class Methods {
     public void enterSearchTextAndClickEnter(String text) {
         SearchPage search = new SearchPage(driver);
         clickTheButton(search.searchButton);
-        waitUntilElementToBeClickable(search.inputSearchQuery);
         search.inputSearchQuery.sendKeys(text, Keys.ENTER);
     }
 

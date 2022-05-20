@@ -20,7 +20,7 @@ public class SignUpPage {
     @FindBy(xpath = "//input[@name='password']")
     public WebElement userPass;
 
-    @FindBy(xpath = "//input[@type='submit']")
+    @FindBy(xpath = "//button[@class='ui-btn btn-color-primary login-view__login']")
     public WebElement submitButton;
 
     @FindBy(xpath = "//a[@href='/submit']")
@@ -32,7 +32,7 @@ public class SignUpPage {
     @FindBy(xpath = "//a[@href='/logout']")
     public WebElement logoutButton;
 
-    @FindBy(xpath = "//p[@class='error-message red']")
+    @FindBy(xpath = "//p[@class='error-message']")
     public WebElement loginError;
 
 

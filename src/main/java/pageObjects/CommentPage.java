@@ -6,9 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utility.Methods;
 import utility.Verification;
-
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class CommentPage {
 
@@ -48,8 +46,8 @@ public class CommentPage {
 
     public void verifyAllReplies() {
         Methods function = new Methods(driver);
-        function.clickTheButtonWithoutWait(arrowDown);
-        Verification.verifyElementIsPresent(arrowDownReverse);
+        function.clickTheButton(arrowDown);
+        function.elementIsDisplayed(arrowDownReverse);
     }
 
 

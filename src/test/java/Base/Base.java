@@ -3,6 +3,8 @@ package Base;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
+import java.time.Duration;
+
 
 public class Base {
 

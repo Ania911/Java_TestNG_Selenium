@@ -2,55 +2,50 @@ package Tests;
 
 import Base.Base;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObjects.CommentPage;
 import pageObjects.HomePage;
 import utility.Methods;
-import utility.Verification;
 
 
 public class testNavigation extends Base {
+
+    private HomePage homePage;
+    private Methods function;
+
+    @BeforeMethod
+    public void setUp() {
+        homePage = new HomePage(driver);
+        function = new Methods(driver);
+    }
+
     @AfterMethod
-    public void backToHomePage() {
+    public void tearDownAfter() {
         driver.get("https://9gag.com/");
+        homePage = null;
+        function = null;
     }
 
     @Test
-    public void testUrlLinkHot() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
-        function.clickTheButtonWithoutWait(homePage.hotButton);
-        homePage.verifyHotUrl();
-        Verification.verifyElementIsPresent(homePage.omicronButton);
+    public void testSelectHotButton() {
+        function.clickTheButton(homePage.hotButton);
+        function.elementIsDisplayed(homePage.selectedButton);
     }
 
     @Test
     public void testUrlLinkTrending() {
-        HomePage homePage = new HomePage(driver);
-        Methods function = new Methods(driver);
-        function.clickTheButtonWithoutWait(homePage.trendingButton);
-        homePage.verifyTrendingUrl();
+        function.clickTheButton(homePage.trendingButton);
+        homePage.verifyUrl("https://9gag.com/");
     }
 
-    @Test
-    public void testOpenCommentNewPage() {
-        HomePage homePage = new HomePage(driver);
-        CommentPage commentPage = new CommentPage(driver);
-        homePage.commentButton.click();
-        Methods function = new Methods(driver);
-        function.switchToCommentPage();
-        commentPage.verifyCommentPageUrl();
-    }
 
     @Test
     public void testNavigationBackAndForward() {
-        HomePage homePage = new HomePage(driver);
-        homePage.navigateBackAndForward();
+        homePage.navigateBackAndForward("https://9gag.com/", "https://9gag.com/hot");
     }
 
     @Test
     public void testNavigationToLink() {
-        HomePage homePage = new HomePage(driver);
         homePage.navigateToFunnyUrl();
     }
 
